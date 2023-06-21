@@ -6,7 +6,7 @@ This project was initially inspired by industrial-purpose LFRs.
 Its aim is to simulate their main purpose - following a line on a surface - in this case - black on white.
 
 The robot's schematic and algorithm are implemented using an Arduino Uno R3 board analogue.  
-See other components in the corresponding schematics folder.
+See other components in the corresponding schematics folder. Schematics were created using [KiCad](https://www.kicad.org/).
 
 ## Current Project Goals
 • add 2 more infrared sensor modules to the robot  
