@@ -7,10 +7,10 @@ over black: 1
 over white: 0
 
 motor functions:
-moving forward: both sensors are over a white surface - both 0
-turning left: left sensor is on the black line - right 0, left 1
-turning right: right sensor is on the black line - right 1, left 0
-stopping: both sensors are on the black line - both 1
+moving forward: sensors 1 & 4 are over a white surface
+turning left: sensors 1 & 2 are over the black line
+turning right: sensors 3 & 4 are over the black line
+stopping: all sensors are over the black line
 */
 
 //motor set A connections
@@ -23,10 +23,14 @@ const int enB = 5;
 const int in3 = 7;
 const int in4 = 6;
 
-int motorSpeed = 80;
-int rotationSpeed = 160;
+const int motorSpeed = 120;
+const int rotationSpeed = 160;
 
-void setup() {
+unsigned long prevMillis = 0UL;
+const unsigned long interval = 1000UL;
+
+void setup() 
+{
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
 
@@ -38,26 +42,44 @@ void setup() {
   //sensors - input
   pinMode(A0, INPUT);
   pinMode(A1, INPUT);
+  pinMode(A2, INPUT);
+  pinMode(A3, INPUT);
 }
 
-void loop() {
-  int LS = digitalRead(A0); //left sensor
-  int RS = digitalRead(A1); //right sensor
+void loop() 
+{
+  //sensors from left to right
+  const int S1 = digitalRead(A0); 
+  const int S2 = digitalRead(A1);
+  const int S3 = digitalRead(A2);
+  const int S4 = digitalRead(A3);
 
-  if (RS == 0 && LS == 0) {
+  if (S1 == 0 && (S2 == 1 || S3 == 1) && S4 == 0)
+  {
     forward();  //go forward
-  } else if (RS == 1 && LS == 0) {
+  } 
+  else if (S1 == 0 && S2 == 0 && S3 == 0 && S4 == 1)
+  {
     right();  //move right
-  } else if (RS == 0 && LS == 1) {
+  }
+  else if (S1 == 1 && S2 == 0 && S3 == 0 && S4 == 0)
+  {
     left();  //move left
-  } else {
+  }
+  else if (S1 == 1 && S2 == 1 && S3 == 1 && S4 == 1) 
+  {
     stop();  //stop
   }
 
-  delay(10);
+  unsigned long curMillis = millis();
+  if (curMillis - prevMillis > interval) 
+  {
+    prevMillis = curMillis;
+  }
 }
 
-void forward() {
+void forward() 
+{
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
   digitalWrite(in3, HIGH);
@@ -78,7 +100,8 @@ void backward() {
   analogWrite(enB, 80);
 }*/
 
-void right() {
+void right() 
+{
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
   digitalWrite(in3, HIGH);
@@ -88,7 +111,8 @@ void right() {
   analogWrite(enB, rotationSpeed);
 }
 
-void left() {
+void left() 
+{
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
   digitalWrite(in3, LOW);
@@ -98,7 +122,8 @@ void left() {
   analogWrite(enB, rotationSpeed);
 }
 
-void stop() {
+void stop() 
+{
   digitalWrite(in1, LOW);
   digitalWrite(in2, LOW);
   digitalWrite(in3, LOW);
