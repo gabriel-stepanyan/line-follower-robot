@@ -23,11 +23,8 @@ const int enB = 5;
 const int in3 = 7;
 const int in4 = 6;
 
-const int motorSpeed = 120;
-const int rotationSpeed = 160;
-
-unsigned long prevMillis = 0UL;
-const unsigned long interval = 1000UL;
+const int motorSpeed = 80;
+const int rotationSpeed = 120;
 
 void setup() 
 {
@@ -53,8 +50,8 @@ void loop()
   const int S2 = digitalRead(A1);
   const int S3 = digitalRead(A2);
   const int S4 = digitalRead(A3);
-
-  if (S1 == 0 && (S2 == 1 || S3 == 1) && S4 == 0)
+  
+  if (S1 == 0 && S2 == 1 && S3 == 1 && S4 == 0)
   {
     forward();  //go forward
   } 
@@ -69,12 +66,6 @@ void loop()
   else if (S1 == 1 && S2 == 1 && S3 == 1 && S4 == 1) 
   {
     stop();  //stop
-  }
-
-  unsigned long curMillis = millis();
-  if (curMillis - prevMillis > interval) 
-  {
-    prevMillis = curMillis;
   }
 }
 
