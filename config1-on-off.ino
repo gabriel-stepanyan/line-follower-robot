@@ -80,17 +80,6 @@ void forward()
   analogWrite(enB, motorSpeed);
 }
 
-/*
-void backward() {
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, HIGH);
-  digitalWrite(in3, LOW);
-  digitalWrite(in4, HIGH);
-
-  analogWrite(enA, 80);
-  analogWrite(enB, 80);
-}*/
-
 void right() 
 {
   digitalWrite(in1, LOW);
