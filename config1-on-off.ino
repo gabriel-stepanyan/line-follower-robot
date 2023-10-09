@@ -14,14 +14,14 @@ stopping: all sensors are over the black line
 */
 
 //motor set A connections
-const int enA = 10;
-const int in1 = 9;
-const int in2 = 8;
+const int enA = 6;
+const int in1 = 10;
+const int in2 = 9;
 
 //motor set B connections
 const int enB = 5;
-const int in3 = 7;
-const int in4 = 6;
+const int in3 = 8;
+const int in4 = 7;
 
 const int motorSpeed = 80;
 const int rotationSpeed = 120;
@@ -79,17 +79,6 @@ void forward()
   analogWrite(enA, motorSpeed);
   analogWrite(enB, motorSpeed);
 }
-
-/*
-void backward() {
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, HIGH);
-  digitalWrite(in3, LOW);
-  digitalWrite(in4, HIGH);
-
-  analogWrite(enA, 80);
-  analogWrite(enB, 80);
-}*/
 
 void right() 
 {
