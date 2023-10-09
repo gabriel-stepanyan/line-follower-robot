@@ -18,6 +18,6 @@ Further improvements to version 2 of the robot could include:
 ## Demo
 Sensor Modules | Algorithm | Implementation
 :---:          | :---:     | :---:
-2              | on-off    | [V1](https://youtu.be/r4wDOfVIelU)
-4              | on-off    | [V2](https://youtu.be/UnUihetjnWI)
+2              | on-off    | [V1](https://youtu.be/UnUihetjnWI)
+4              | on-off    | [V2](https://youtu.be/r4wDOfVIelU)
 4              | pid       | [V3](https://youtu.be/CkVbnJZYU6A)
